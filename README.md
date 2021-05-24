@@ -34,6 +34,12 @@
 * User profile with javascript and jwt_extended
 
 
+### Testing
+
+* Test folder: postman_collection
+* Create your own jwt token, store it in a postman environment variable and test the API!!
+
+
 
 
     
