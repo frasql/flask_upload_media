@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+downloads/
+eggs/
+.eggs/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Specific vscode
+.vscode
+.idea
+
+# Unit test / coverage reports
+.cache
+
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+
+# IPython Notebook
+.ipynb_checkpoints
+
+# dotenv
+.env
+
+# virtualenv
+venv/
+ENV/
+
+# database test
+data.db
+
+# test specific
+test.py
