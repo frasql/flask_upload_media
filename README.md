@@ -9,13 +9,18 @@
 
 ## Installation
 
-* pip3 install -r requirements.txt
+* pip3 install -r /path/to/requirements.txt
+
 
 
 ## Usage
 
-* Define file folders in upload_utils.py
 * Default folder --> [images, videos, avatars, unknown]
+* Defined in upload_files/libs/upload_utils:
+```
+FileStoreManager --> object that allows to get properties and save werkzeug.FileStorage object.
+FileLoadManager --> object that allows to load a stored media file 
+```
 
 
 ### Content
