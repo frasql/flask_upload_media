@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response
-from flask.json import jsonify
+from models.user import UserModel
+from flask import Flask, render_template, jsonify
 from flask_cors import CORS
+from flask_jwt_extended import verify_jwt_in_request, get_jwt
+from functools import wraps
 from db import db
 from ma import ma
 from flask_restful import Api
@@ -10,8 +12,7 @@ from resources.user import (
     UserResource,
     UserRegister,
     UserLogin,
-    UserLogout,
-    UserProfile
+    UserLogout
 )
 from resources.media import (
     ImageUpload,
@@ -89,13 +90,23 @@ api.add_resource(Image, '/image/<string:filename>/')
 api.add_resource(ImageList, '/images/')
 api.add_resource(AvatarUpload, '/upload_avatar/')
 api.add_resource(Avatar, '/avatar/')
-api.add_resource(UserProfile, '/profile/')
 
+
+# Here is a custom decorator that verifies the JWT is present in the request,
+# as well as insuring that the JWT has a claim indicating that this user is
+# an administrator
 
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/profile/")
+def profile():
+    return render_template("profile.html")
+     
+
 
 
 if __name__ == '__main__':

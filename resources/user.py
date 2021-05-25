@@ -1,4 +1,4 @@
-from flask import json, request, make_response, render_template, jsonify
+from flask import json, request, make_response, render_template, jsonify, redirect, url_for
 from flask_jwt_extended.utils import get_jti
 from blacklist import BLACKLIST
 from flask_restful import Resource
@@ -107,19 +107,5 @@ class UserLogout(Resource):
         return make_response(jsonify(message=USER_LOGOUT.format(user_id)), 200)
 
 
-class UserProfile(Resource):
-    @jwt_required()
-    @classmethod
-    def get(cls):
-        user = UserModel.find_by_id(get_jwt_identity())
-        if user:
-            jwt_claims = get_jwt()
 
-            if jwt_claims["logged_in"]:
-                headers = {'Content-Type': 'text/html'}
-                return make_response(render_template("profile.html", user_id=user.id), 200, headers)
-            else:
-                return make_response(jsonify(message=LOGIN_REQUIRED))
-        else:
-            return make_response(jsonify(message=USER_NOT_FOUND), 200)
         

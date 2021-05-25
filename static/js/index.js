@@ -181,7 +181,8 @@ function GetUserProfile() {
         headers: {
             "Content-Type": "aplication/json",
             "Authorization": "Bearer "+ access_token
-        }
+        },
+        redirect: "follow"
     }
     
     let url = 'http://localhost:5000/profile/';
@@ -192,7 +193,7 @@ function GetUserProfile() {
     fetch(req)
     .then((response) => {
         if(response.ok) {
-            return response;
+            return response.json()
         } else {
             throw new Error(response.statusText);
         }
@@ -223,11 +224,12 @@ if(btn_register_user) {
     btn_register_user.addEventListener('click', RegisterUser);
 }
 
-// execute register_user
+/*
+// user profile
 const btn_profile_user = document.querySelector("#profile");
 if(btn_profile_user) {
     console.log(btn_profile_user);
     btn_profile_user.addEventListener('click', GetUserProfile);
 }
-
+*/
 

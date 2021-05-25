@@ -45,3 +45,24 @@ loadBtn.addEventListener("click", function(e) {
   fd.append("video", input_data.files[0]);
   upload(fd);
   });
+
+
+
+// modal update
+const uploadBtn = document.querySelector('#open_upload');
+
+if(uploadBtn) {
+    
+    const modal_upload = document.querySelector('#modal_upload');
+    const close_upload = document.querySelector('#close_modal_upload');
+      
+      
+    uploadBtn.addEventListener('click', () => {
+      modal_upload.classList.add('is-active');
+    });
+      
+    close_upload.addEventListener('click', () => {
+      modal_upload.classList.remove('is-active');
+    })
+
+}

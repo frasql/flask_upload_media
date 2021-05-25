@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <!-- Bulma Version 0.9.0-->
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-    <title>CopyFans</title>
+    <title>{% block title %}CopyFans{% endblock title %}</title>
+    {% endblock head %}
+
 </head>
 <body>
+  {% block navbar %}
     <nav class="navbar is-fixed-top has-shadow is-white" style="border-bottom: 1px solid lightgray">
         <!-- logo / brand -->
         <div class="navbar-brand">
-          <a href="#"><img class="ml-5" src="#"/></a>
+          <a href="{{ url_for('index') }}"><img class="ml-5 responsive-image" src="{{url_for('static', filename='application_images/nav_pic.png')}}" alt="Loading image..." /></a>
           <a class="navbar-item">
           </a>
           <a class="navbar-burger" id="burger">
@@ -27,16 +30,13 @@
         <div class="navbar-menu" id="nav-links">
             <div class="navbar-start">
               <div>
-                <a class="navbar-item subtitle" href="#" id="profile">Profile</a>
-              </div>
-              <div>
-                <a class="navbar-item subtitle" href="#">Archivio</a>
+                <a class="navbar-item subtitle" href="{{url_for('profile')}}" id="profile">Profile</a>
               </div>
             </div>
         </div>
         <div class="navbar-end">
             <div class="navbar-item">
-                <div class="buttons">                
+                <div class="buttons">
                   <a class="button is-link" id="register_modal">
                     Sing Up
                   </a>
@@ -51,11 +51,11 @@
             </div>
         </div>
     </nav>
-
+  {% endblock navbar %}
     <!-- Bulma css modals -->
 
       <!-- Modal Sing Up -->
-
+{% block content %}
 <div class="modal" id="modal_register">
   <div class="modal-background" id="modal_background_register"></div>
   <div class="modal-card">
@@ -243,7 +243,11 @@
   </div>
 </div>
 
-
+    {% block script %}
     <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
+    {% endblock script %}
+
+{% endblock content %}
+
 </body>
 </html>
